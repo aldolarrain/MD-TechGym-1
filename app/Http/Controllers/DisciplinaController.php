@@ -29,6 +29,10 @@ class DisciplinaController extends Controller
         $disciplina->descripcion=$request->descripcion;
         $disciplina->save();
     }
+    public function selectDisciplina(){
+        $disciplina= Disciplina::select('id','nombre','descripcion')->get();
+        return $disciplina;
+    }
 
     
   

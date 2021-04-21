@@ -14,4 +14,7 @@ class Disciplina extends Model
     ];
 
     public $timestamps=false;
+    public function horario(){
+        return $this->hasMany('App\Horario');
+    }
 }

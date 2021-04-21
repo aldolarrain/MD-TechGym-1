@@ -1,27 +1,27 @@
 <template>
     <div class="container">
-        <h3>Registro de Disciplinas</h3>
-        <!--Listrado de Registros-->
+        <h3>Registro de Horarios</h3>
+        <!--Listado de Horarios-->
         <form action="" method="POST">
             <table>
                 <tr>
-                    <td>Nombre</td>
-                    <td><input type="text" v-model="nombre" placeholder="Nombre"></td>
+                    <td>HoraInicio</td>
+                    <td><input type="time" v-model="horainicio" placeholder="HoraInicio Horario"></td>
                 </tr>
                 <tr>
-                    <td>Descripcion</td>
-                    <td><input type="text" v-model="descripcion"></td>
+                    <td>HoraFin</td>
+                    <td><input type="time" v-model="horafin"></td>
                 </tr>
-                <tr>
-                    <td>Categoria</td>
+                <tr> 
+                    <td>Disciplina</td>
                     <td>
-                        <select v-model="id">
+                        <select v-model="id_disciplina">
                             <option value="0" disabled>Seleccione</option>
-                            <option v-for="disciplina in arrayDisciplina" :key="disciplina.id" :value="disciplina.id" 
-                            v-text="disciplina.nombre"></option>
+                            <option v-for="disciplina in arrayDisciplina" :key="disciplina.id" :value="disciplina.id" v-text="disciplina.nombre"></option>
                         </select>
                     </td>
                 </tr>
+
                 <tr>
                     <td colspan="3">
                         <button type="button" @click="nuevo()">Nuevo</button>
@@ -31,8 +31,8 @@
                     </td>
                 </tr>
             </table>
-            <input type="text" v-model="buscar" placeholder="Descripcion disciplinas">
-            <button type="button" @click="listar(buscar)">Buscar por nombre</button>
+            <input type="text" v-model="buscar" placeholder="HoraInicio Horario">
+            <button type="button" @click="listar(buscar)">Buscar por hora</button>
         </form>
         <br>
         <br>
@@ -40,17 +40,21 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nombre</th>
+                    <th>HoraInicio</th>
+                    <th>HoraFin</th>
+                    <th>Disciplina</th>
                     <th>Descripcion</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="disciplina in arrayDisciplina" :key="disciplina.id">
-                    <td v-text="disciplina.id"></td>
-                    <td v-text="disciplina.nombre"></td>
-                    <td v-text="disciplina.descripcion"></td>
-                    <td><a href="#" @click="llenar(disciplina)">Seleccionar</a></td>
+                <tr v-for="horario in arrayHorario" :key="horario.id">
+                    <td v-text="horario.id"></td>
+                    <td v-text="horario.horainicio"></td>
+                    <td v-text="horario.horafin"></td>
+                    <td v-text="horario.nom_disciplina"></td>
+                    <td v-text="horario.des_disciplina"></td>
+                    <td><a href="#" @click="llenar(horario)">editar</a></td>
                 </tr>
             </tbody>
         </table>
@@ -61,18 +65,22 @@
     export default {
         data(){
             return{
-                nombre :'',
-                descripcion : '',
+                horainicio : '',
+                horafin : '',
+                id_disciplina : 0,
+                id_horario : 0,
+                nomb_disciplina: '',
                 buscar : '',
-                arrayDisciplina:[],
+                arrayDisciplina: [],
+                arrayHorario: []
             }
         },
         methods:{
             listar(buscar){
                 let me = this;
-                var url='/disciplina?buscar=' + buscar;
+                var url='/horario?buscar=' + buscar;
                 axios.get(url).then(function(response){
-                    me.arrayDisciplina= response.data;
+                    me.arrayHorario= response.data;
                 })
                 .catch(function(error){
                     console.log(error);
@@ -89,9 +97,10 @@
             },
             guardar(){
                 let me = this;
-                axios.post('disciplina/registrar',{
-                    'nombre': this.nombre,
-                    'descripcion' : this.descripcion
+                axios.post('horario/registrar',{
+                    'horainicio':this.horainicio,
+                    'horafin': this.horafin,
+                    'id_disciplina': this.id_disciplina
                 }).then(function(error){
                     me.listar('');
                 }).catch(function(error){
@@ -100,35 +109,38 @@
             },
             modificar(){
                 let me = this;
-                axios.put('disciplina/modificar',{
-                    'nombre': this.nombre,
-                    'descripcion' : this.descripcion
+                axios.put('horario/modificar',{
+                     'horainicio':this.horainicio,
+                    'horafin': this.horafin,
+                    'id_disciplina': this.id_disciplina,
+                    'id': this.id_horario
                 }).then(function(error){
                     me.listar('');
                 }).catch(function(error){
                     console.log(error);
                 });  
             },
-            eliminar(){
+             eliminar(){
                 let me = this;
-                axios.put('disciplina/eliminar',{
-                    'id': this.id
+                axios.put('horario/eliminar',{
+                    'id': this.id_horario
                 }).then(function(error){
                     me.listar('');
                 }).catch(function(error){
                     console.log(error);
                 });  
-            },
+             },
             llenar(data=[]){
-                this.id=data['id'];
-                this.nombre=data['nombre'];
-                this.descripcion=data['descripcion'];
-                
+                this.id_horario=data['id'];
+                this.horainicio=data['horainicio'];
+                this.horafin=data['horafin'];
+                this.id_disciplina=data['id_disciplina'];
             },
             nuevo(){
-                this.nombre = '';
-                this.descripcion = '';
-                this.id=0;
+                this.horainicio = '';
+                this.horafin='';
+                this.id_disciplina=0;
+
             },
         },
         mounted() {

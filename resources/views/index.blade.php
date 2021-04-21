@@ -21,6 +21,9 @@
                     <li @click="menu=2">
                         <a class="nav-link" href="#">Cliente</a>
                     </li>
+                    <li @click="menu=3">
+                        <a class="nav-link" href="#">Horario</a>
+                    </li>
                   </ul>
                 </div>
             </nav>
@@ -33,6 +36,9 @@
             </template>
             <template v-if="menu==2">
                 <frmCliente></frmCliente>
+            </template>
+            <template v-if="menu==3">
+                <frmHorario></frmHorario>
             </template>
            
             <!--Fin menu principal-->

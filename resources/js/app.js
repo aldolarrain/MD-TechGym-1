@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('frmdisciplina',require('./components/frmdisciplina.vue').default);
 Vue.component('frmcliente',require('./components/frmcliente.vue').default);
+Vue.component('frmhorario',require('./components/frmhorario.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
