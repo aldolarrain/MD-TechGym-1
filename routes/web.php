@@ -52,3 +52,14 @@ Route::post('/notainscripcion/registrar', 'NotainscripcionController@store');
 Route::put('/notainscripcion/modificar','NotainscripcionController@update');
 Route::put('/notainscripcion/eliminar','NotainscripcionController@delete');
 //Route::get('/tipoinscripcion/selectAdministrador','TipoinscripcionController@selectTipoinscripcion');
+//Rutas Entrenador
+Route::get('/entrenador','EntrenadorController@index');
+Route::post('/entrenador/registrar', 'EntrenadorController@store');
+Route::put('/entrenador/modificar','EntrenadorController@update');
+Route::put('/entrenador/eliminar','EntrenadorController@delete');
+Route::get('/entrenador/selectEntrenador','EntrenadorController@selectEntrenador');
+//Rutas Paquetes
+Route::get('/paquete','PaqueteController@index');
+Route::post('/paquete/registrar', 'PaqueteController@store');
+Route::put('/paquete/modificar', 'PaqueteController@update');
+Route::put('/paquete/eliminar', 'PaqueteController@delete');

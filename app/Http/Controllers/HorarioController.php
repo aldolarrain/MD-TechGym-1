@@ -17,12 +17,12 @@ class HorarioController extends Controller
         $buscar=$request->buscar;
         if($buscar==''){
         $horario = Horario::join('disciplina','horario.id_disciplina','=','disciplina.id')
-            ->select('horario.id', 'horario.id_disciplina','disciplina.nombre as nom_disciplina','disciplina.descripcion as des_disciplina')
+            ->select('horario.id', 'horario.horainicio','horario.horafin','horario.id_disciplina','disciplina.nombre as nom_disciplina','disciplina.descripcion as des_disciplina')
             ->get();
         }
         else{
             $horario = Horario::join('disciplina','horario.id_disciplina','=','disciplina.id')
-            ->select('horario.id', 'horario.id_disciplina','disciplina.nombre as nom_disciplina','disciplina.descripcion as des_disciplina')
+            ->select('horario.id', 'horario.horainicio','horario.horafin','horario.id_disciplina','disciplina.nombre as nom_disciplina','disciplina.descripcion as des_disciplina')
             ->where('horainicio','like','%'.$buscar.'%')
             ->get();
         }
