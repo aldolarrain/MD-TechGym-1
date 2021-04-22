@@ -23,6 +23,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('frmdisciplina',require('./components/frmdisciplina.vue').default);
 Vue.component('frmcliente',require('./components/frmcliente.vue').default);
 Vue.component('frmhorario',require('./components/frmhorario.vue').default);
+Vue.component('frmadministrador',require('./components/frmadministrador.vue').default);
+Vue.component('frmtipoinscripcion',require('./components/frmtipoinscripcion.vue').default);
+Vue.component('frmnotainscripcion',require('./components/frmnotainscripcion.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

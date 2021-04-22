@@ -14,4 +14,7 @@ class Cliente extends Model
     ];
 
     public $timestamps=false;
+    public function notainscripcion(){
+        return $this->hasMany('App\Notainscripcion');
+}
 }

@@ -24,6 +24,15 @@
                     <li @click="menu=3">
                         <a class="nav-link" href="#">Horario</a>
                     </li>
+                    <li @click="menu=5">
+                        <a class="nav-link" href="#">Administrador</a>
+                    </li>
+                    <li @click="menu=6">
+                        <a class="nav-link" href="#">Tipo-Inscripcion</a>
+                    </li>
+                    <li @click="menu=7">
+                        <a class="nav-link" href="#">Nota-Inscripcion</a>
+                    </li>
                   </ul>
                 </div>
             </nav>
@@ -39,6 +48,15 @@
             </template>
             <template v-if="menu==3">
                 <frmHorario></frmHorario>
+            </template>
+            <template v-if="menu==5">
+                <frmAdministrador></frmAdministrador>
+            </template>
+            <template v-if="menu==6">
+                <frmTipoinscripcion></frmTipoinscripcion>
+            </template>
+            <template v-if="menu==7">
+                <frmNotainscripcion></frmNotainscripcion>
             </template>
            
             <!--Fin menu principal-->

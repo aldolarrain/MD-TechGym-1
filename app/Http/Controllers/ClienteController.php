@@ -27,6 +27,7 @@ class ClienteController extends Controller
         $cliente->apellido=$request->apellido;
         $cliente->save();
     }
+    
 
     public function update(Request $request){
         $cliente = Cliente::findOrFail($request->id);
@@ -41,8 +42,8 @@ class ClienteController extends Controller
     }
 
     public function selectCliente(Request $request){
-        $categoria= Categoria::select('id','nombre')->get();
-        return $categoria;
+        $cliente= Cliente::select('id','nombre','apellido')->get();
+        return $cliente;
     }
 
 }
